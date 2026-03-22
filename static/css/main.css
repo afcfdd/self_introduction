@@ -213,10 +213,7 @@ h2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.topic-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
+.topic-grid,
 .contact-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -375,3 +372,4 @@ ul {
     flex-direction: column;
   }
 }
+

@@ -1,0 +1,8 @@
+baseURL = "https://afcfdd.github.io/self_introduction/"
+languageCode = "ja-jp"
+title = "Anji Fujiwara | About Me"
+
+[params]
+  description = "Anji Fujiwaraの研究領域、プロフィール、コンタクトをまとめた自己紹介ページ。"
+  author = "Anji Fujiwara"
+

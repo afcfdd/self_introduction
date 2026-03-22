@@ -1,11 +1,6 @@
 const menuButton = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector(".nav-links");
-const year = document.querySelector("#year");
 const revealTargets = document.querySelectorAll(".reveal");
-
-if (year) {
-  year.textContent = String(new Date().getFullYear());
-}
 
 if (menuButton && navLinks) {
   menuButton.addEventListener("click", () => {
@@ -36,3 +31,4 @@ const observer = new IntersectionObserver(
 );
 
 revealTargets.forEach((target) => observer.observe(target));
+
