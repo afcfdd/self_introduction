@@ -1,123 +1,94 @@
 {{ define "main" }}
-  <div class="page-shell">
+  <nav class="topbar">
+    <a class="brand" href="#top">{{ .Params.profile.name }}</a>
+    <div class="nav-links">
+      <a href="#profile">Profile</a>
+      <a href="#research">Research</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <article class="page" id="top">
     <header class="hero">
-      <nav class="topbar">
-        <a class="brand" href="#top">About Me</a>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-          Menu
-        </button>
-        <div class="nav-links" id="site-nav">
-          <a href="#profile">Profile</a>
-          <a href="#research">Research</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </nav>
-
-      <section class="hero-grid" id="top">
-        <div class="hero-copy reveal">
-          <p class="eyebrow">{{ .Params.profile.eyebrow }}</p>
-          <h1>{{ .Params.profile.name }}</h1>
-          <p class="lead">{{ .Params.profile.lead }}</p>
-          <div class="hero-tags">
-            {{ range .Params.profile.tags }}
-              <span>{{ . }}</span>
-            {{ end }}
-          </div>
-        </div>
-
-        <figure class="hero-portrait reveal">
-          <img src="{{ .Params.profile.portrait | relURL }}" alt="{{ .Params.profile.name }} portrait" />
+      <p class="eyebrow">{{ .Params.profile.eyebrow }}</p>
+      <h1>{{ .Params.profile.name }}</h1>
+      <p class="lead">{{ .Params.profile.lead }}</p>
+      <p class="tag-row">
+        {{ range .Params.profile.tags }}<span>{{ . }}</span>{{ end }}
+      </p>
+      {{ with .Params.profile.portrait }}
+        <figure class="portrait">
+          <img src="{{ . | relURL }}" alt="{{ $.Params.profile.name }}" />
         </figure>
-      </section>
+      {{ end }}
     </header>
 
-    <main>
-      <section class="panel reveal" id="profile">
-        <div class="section-heading">
-          <p class="section-label">Profile</p>
-          <h2>研究と進学の現在地</h2>
+    <section id="profile">
+      <h2>{{ .Params.headings.profile }}</h2>
+      {{ range .Params.education }}
+        <div class="entry">
+          <h3>{{ .title }}</h3>
+          <p>{{ .body | safeHTML }}</p>
+          {{ with .note }}
+            <p class="note">{{ . }}</p>
+          {{ end }}
         </div>
+      {{ end }}
 
-        <div class="info-grid">
-          {{ range .Params.education }}
-            <article class="info-card">
-              <h3>{{ .title }}</h3>
-              <p>{{ .body | safeHTML }}</p>
+      <div class="statement">
+        {{ range .Params.statement }}
+          <p>{{ .text }}</p>
+        {{ end }}
+      </div>
+    </section>
+
+    <section id="research">
+      <h2>{{ .Params.headings.research }}</h2>
+      {{ range .Params.research }}
+        <div class="entry">
+          <h3>{{ .title }}</h3>
+          {{ with .items }}
+            <ul>
+              {{ range . }}
+                <li>{{ . }}</li>
+              {{ end }}
+            </ul>
+          {{ end }}
+          {{ with .body }}
+            <p>{{ . }}</p>
+          {{ end }}
+        </div>
+      {{ end }}
+    </section>
+
+    <section id="vision">
+      <h2>{{ .Params.headings.vision }}</h2>
+      <p class="vision">{{ .Params.vision.quote }}</p>
+    </section>
+
+    <section id="contact">
+      <h2>{{ .Params.headings.contact }}</h2>
+      <div class="contact-list">
+        {{ range .Params.contacts }}
+          <div class="contact-row">
+            <span class="label">{{ .label }}</span>
+            <div>
+              {{ if .href }}
+                <a href="{{ .href }}">{{ .value }}</a>
+              {{ else }}
+                <span>{{ .value }}</span>
+              {{ end }}
               {{ with .note }}
-                <p class="muted">{{ . }}</p>
+                <span class="note">{{ . }}</span>
               {{ end }}
-            </article>
-          {{ end }}
-        </div>
-
-        <div class="statement">
-          {{ range .Params.statement }}
-            <p>{{ .text }}</p>
-          {{ end }}
-        </div>
-      </section>
-
-      <section class="panel reveal" id="research">
-        <div class="section-heading">
-          <p class="section-label">Research</p>
-          <h2>関心領域</h2>
-        </div>
-
-        <div class="topic-grid">
-          {{ range .Params.research }}
-            <article class="topic-card">
-              <h3>{{ .title }}</h3>
-              {{ with .items }}
-                <ul>
-                  {{ range . }}
-                    <li>{{ . }}</li>
-                  {{ end }}
-                </ul>
-              {{ end }}
-              {{ with .body }}
-                <p>{{ . }}</p>
-              {{ end }}
-            </article>
-          {{ end }}
-        </div>
-
-        <blockquote class="vision">
-          {{ .Params.vision.quote }}
-        </blockquote>
-      </section>
-
-      <section class="panel reveal" id="contact">
-        <div class="section-heading">
-          <p class="section-label">Contact</p>
-          <h2>連絡先</h2>
-        </div>
-
-        <div class="contact-grid">
-          {{ range .Params.contacts }}
-            {{ if .href }}
-              <a class="contact-card" href="{{ .href }}">
-                <span class="contact-label">{{ .label }}</span>
-                <strong>{{ .value }}</strong>
-                {{ with .note }}
-                  <p>{{ . }}</p>
-                {{ end }}
-              </a>
-            {{ else }}
-              <div class="contact-card is-muted">
-                <span class="contact-label">{{ .label }}</span>
-                <strong>{{ .value }}</strong>
-                {{ with .note }}
-                  <p>{{ . }}</p>
-                {{ end }}
-              </div>
-            {{ end }}
-          {{ end }}
-        </div>
-      </section>
-    </main>
+            </div>
+          </div>
+        {{ end }}
+      </div>
+    </section>
 
     <footer class="footer">
-      <p>Copyright © {{ now.Year }} {{ .Site.Params.author }} All Rights Reserved.</p>
+      <p>© {{ now.Year }} {{ .Site.Params.author }}</p>
     </footer>
-  </div>
+  </article>
 {{ end }}
