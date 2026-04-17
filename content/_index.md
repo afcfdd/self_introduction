@@ -5,7 +5,7 @@ description = "VR、触覚、知覚、身体拡張を軸にしたプロフィー
 [profile]
 eyebrow = "VR / Sensory-motor / Perception"
 name = "Anji Fujiwara"
-lead = "🧠 身体・知覚をめぐる研究を、触覚・知覚・VRの交点から進めています。"
+lead = "🧠 身体・知覚をめぐる研究を、VRを主題に進めています。"
 portrait = "images/profile.png"
 tags = ["Virtual Reality", "Sensory-motor", "Body Schema", "Neuroscience"]
 
