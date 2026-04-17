@@ -35,7 +35,7 @@ note = "筑波大学　システム情報系 Beyond Reality Lab 連携学生"
 text = "Anji Fujiwara is a student at the National Institute of Technology, Nara College, working on haptics, perception, and virtual reality."
 
 [[statement]]
-text = "筑波大学情報学群情報メディア創成学類に在籍し、運動・知覚・ VR を主題とした研究に取り組んでいます。"
+text = "筑波大学情報学群情報メディア創成学類に在籍し、運動・知覚・ VR をテーマとした研究に取り組んでいます。"
 
 [[research]]
 title = "Core Fields"
@@ -65,7 +65,7 @@ href = "mailto:jjay.cfd@gmail.com"
 note = ""
 
 [[contacts]]
-label = "Elsewhere"
+label = "SNS"
 value = "X: @afcfd_"
 href = "https://x.com/afcfd_"
 note = ""
