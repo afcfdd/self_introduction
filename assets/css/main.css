@@ -234,6 +234,10 @@ h1 {
   border-top: 1px solid var(--accent);
 }
 
+#profile > .section-header {
+  border-top: 0;
+}
+
 .section-header > div {
   display: flex;
   gap: 1rem;
