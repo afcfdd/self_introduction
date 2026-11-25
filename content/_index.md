@@ -5,8 +5,6 @@ research_methods = ["Virtual Reality", "Robotics"]
 
 [profile]
 name = "Anji Fujiwara"
-lead = "VRやロボティクスを用いて、触覚・知覚・身体がどのように関わり合うのかを研究しています。"
-lead_en = "I use virtual reality and robotics to study how touch, perception, and the body interact."
 portrait = "images/profile-portrait.png"
 scholar = "https://scholar.google.com/citations?user=UvIvUX8AAAAJ"
 tags = ["Sensory-motor coupling", "Body Schema", "Neuroscience"]
@@ -57,10 +55,6 @@ name = "Metaverse Media Lab"
 url = "https://mvml.slis.tsukuba.ac.jp/"
 institution = "筑波大学 図書館情報メディア系"
 institution_en = "Faculty of Library, Information and Media Science, University of Tsukuba"
-
-[statement]
-text = "筑波大学情報学群情報メディア創成学類に在籍しています。"
-text_en = "I am a student in the College of Media Arts, Science and Technology at the University of Tsukuba."
 
 [[research]]
 title = "Core Fields"

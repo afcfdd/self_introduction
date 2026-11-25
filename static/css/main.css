@@ -147,7 +147,6 @@ a {
   grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr);
   grid-template-rows: 1fr;
   min-height: 72vh;
-  border-bottom: 1px solid var(--accent);
 }
 
 .hero-meta {
@@ -345,20 +344,6 @@ h3 {
 
 .affiliation-institution {
   display: block;
-}
-
-.statement {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  margin-top: 0;
-  border-top: 2px solid var(--accent);
-  border-bottom: 1px solid var(--line);
-}
-
-.statement p {
-  margin: 0;
-  font-size: 0.9rem;
 }
 
 .dark-card {
@@ -588,8 +573,7 @@ h3 {
   .profile-grid,
   .research-grid,
   .publication-grid,
-  .contact-list,
-  .statement {
+  .contact-list {
     grid-template-columns: 1fr;
   }
 

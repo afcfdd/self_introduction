@@ -81,14 +81,6 @@
         </section>
       {{ end }}
 
-      {{ with .Params.statement }}
-        <div class="statement card">
-          <p>
-            <span class="lang lang-ja">{{ .text }}{{ $.Params.profile.lead }}</span>
-            <span class="lang lang-en">{{ .text_en }} {{ $.Params.profile.lead_en }}</span>
-          </p>
-        </div>
-      {{ end }}
     </section>
 
     <section id="research" class="section-block">
