@@ -70,9 +70,9 @@ items_en = ["Sensorimotor Coupling", "Cognitive Psychology", "Neuroscience"]
 
 [[research]]
 title = "Focus"
-body = "外界の状態にアクセスするチャネルから得られる高次元の情報が、身体の状態や動きを表す内部表現へとどうまとまるのかに関心があります。VRで感覚入力を操作したときの知覚や行動を手がかりに、人の内部表現を推定し、ロボットが感覚と運動を通じて学習する表象と比較することを目指しています。"
+body = "外界の状態を推論するチャネルから得られる高次元の情報が、身体の状態や動きを表す内部表現へとどうまとまるのかに関心があります。VRで感覚入力を操作したときの知覚や行動を手がかりに、人の内部表現を推定し、ロボットが感覚と運動を通じて学習する表象と比較することを目指しています。"
 title_en = "Focus"
-body_en = "I am interested in how high-dimensional information from channels that provide access to the state of the external world is integrated into internal representations of the body's state and movement. I aim to infer human internal representations from perception and behavior when sensory input is manipulated in VR, and compare them with representations that robots learn through sensing and movement."
+body_en = "I am interested in how high-dimensional information from channels used to infer the state of the external world is integrated into internal representations of the body's state and movement. I aim to infer human internal representations from perception and behavior when sensory input is manipulated in VR, and compare them with representations that robots learn through sensing and movement."
 
 [[publications]]
 authors = "Anji Fujiwara, Kosuke Shimizu, Keigo Matsumoto"
