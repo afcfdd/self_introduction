@@ -90,7 +90,6 @@ a {
 .section-kicker,
 .eyebrow,
 .hero-meta,
-.section-number,
 .footer,
 .contact-row .label {
   font-family: "DM Mono", monospace;
@@ -225,10 +224,6 @@ h1 {
 }
 
 .section-header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 2rem;
   padding-top: 1.2rem;
   margin-bottom: 2.5rem;
   border-top: 1px solid var(--accent);
@@ -236,17 +231,6 @@ h1 {
 
 #profile > .section-header {
   border-top: 0;
-}
-
-.section-header > div {
-  display: flex;
-  gap: 1rem;
-  align-items: baseline;
-}
-
-.section-number {
-  color: var(--accent);
-  font-size: 0.7rem;
 }
 
 h2 {
@@ -285,16 +269,6 @@ h2 {
   border-top: 1px solid var(--line);
   background: transparent;
   transition: none;
-}
-
-.card::after {
-  position: absolute;
-  top: 1.45rem;
-  right: 0;
-  color: var(--accent);
-  content: attr(data-index);
-  font-family: "DM Mono", monospace;
-  font-size: 0.6rem;
 }
 
 .card:hover {
@@ -553,7 +527,6 @@ h3 {
   }
 
   .section-header {
-    display: block;
     margin-bottom: 1.4rem;
   }
 

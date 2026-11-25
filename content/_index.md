@@ -26,16 +26,12 @@ title = " 2026 —"
 title_en = "2026 —"
 body = "College of Media Arts, Science and Technology,<br>School of Informatics, University of Tsukuba"
 body_ja = "筑波大学 情報学群<br>情報メディア創成学類"
-note = "筑波大学　情報学群　情報メディア創成学類"
-note_en = "College of Media Arts, Science and Technology, University of Tsukuba"
 
 [[education]]
 title = " 2023 — 2026"
 title_en = "2023 — 2026"
 body = "Department of Mechanical Engineering,<br>National Institute of Technology, Nara College"
 body_ja = "奈良工業高等専門学校<br>機械工学科　3年次修了"
-note = "奈良工業高等専門学校　機械工学科　3年次修了"
-note_en = "Department of Mechanical Engineering, National Institute of Technology, Nara College"
 
 [research_base]
 title = "Research Base"

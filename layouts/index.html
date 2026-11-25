@@ -46,21 +46,17 @@
 
     <section id="profile" class="section-block">
       <div class="section-header">
-        <div>
-          <span class="section-number">01</span>
-          <h2><span class="lang lang-ja">{{ .Params.headings.profile }}</span><span class="lang lang-en">{{ .Params.headings.profile_en }}</span></h2>
-        </div>
+        <h2><span class="lang lang-ja">{{ .Params.headings.profile }}</span><span class="lang lang-en">{{ .Params.headings.profile_en }}</span></h2>
       </div>
 
       <div class="profile-grid">
-        {{ range $index, $item := .Params.education }}
-          <article class="entry card" data-index="{{ printf "%02d" (add $index 1) }}">
+        {{ range $item := .Params.education }}
+          <article class="entry card">
             <h3><span class="lang lang-ja">{{ $item.title }}</span><span class="lang lang-en">{{ $item.title_en }}</span></h3>
             <p class="lang-block">
               <span class="lang lang-ja">{{ $item.body_ja | safeHTML }}</span>
               <span class="lang lang-en">{{ $item.body | safeHTML }}</span>
             </p>
-            {{ with $item.note }}<p class="note lang-block"><span class="lang lang-ja">{{ . | safeHTML }}</span><span class="lang lang-en">{{ $item.note_en | safeHTML }}</span></p>{{ end }}
           </article>
         {{ end }}
       </div>
@@ -84,15 +80,12 @@
 
     <section id="research" class="section-block">
       <div class="section-header">
-        <div>
-          <span class="section-number">02</span>
-          <h2><span class="lang lang-ja">{{ .Params.headings.research }}</span><span class="lang lang-en">{{ .Params.headings.research_en }}</span></h2>
-        </div>
+        <h2><span class="lang lang-ja">{{ .Params.headings.research }}</span><span class="lang lang-en">{{ .Params.headings.research_en }}</span></h2>
       </div>
 
       <div class="research-grid">
-        {{ range $index, $item := .Params.research }}
-          <article class="entry card research-card" data-index="{{ printf "%02d" (add $index 1) }}">
+        {{ range $item := .Params.research }}
+          <article class="entry card research-card">
             <h3><span class="lang lang-ja">{{ $item.title }}</span><span class="lang lang-en">{{ $item.title_en }}</span></h3>
             {{ with $item.items }}
               <ul class="field-list">
@@ -115,10 +108,7 @@
 
     <section id="publications" class="section-block publications-block">
       <div class="section-header">
-        <div>
-          <span class="section-number">03</span>
-          <h2><span class="lang lang-ja">{{ .Params.headings.publications }}</span><span class="lang lang-en">{{ .Params.headings.publications_en }}</span></h2>
-        </div>
+        <h2><span class="lang lang-ja">{{ .Params.headings.publications }}</span><span class="lang lang-en">{{ .Params.headings.publications_en }}</span></h2>
       </div>
 
       <div class="publication-grid">
@@ -135,15 +125,12 @@
 
     <section id="contact" class="section-block contact-block">
       <div class="section-header">
-        <div>
-          <span class="section-number">04</span>
-          <h2><span class="lang lang-ja">{{ .Params.headings.contact }}</span><span class="lang lang-en">{{ .Params.headings.contact_en }}</span></h2>
-        </div>
+        <h2><span class="lang lang-ja">{{ .Params.headings.contact }}</span><span class="lang lang-en">{{ .Params.headings.contact_en }}</span></h2>
       </div>
 
       <div class="contact-list">
-        {{ range $index, $item := .Params.contacts }}
-          <div class="contact-row card" data-index="{{ printf "%02d" (add $index 1) }}">
+        {{ range $item := .Params.contacts }}
+          <div class="contact-row card">
             <span class="label"><span class="lang lang-ja">{{ $item.label }}</span><span class="lang lang-en">{{ $item.label_en }}</span></span>
             <div>
               {{ if $item.href }}
