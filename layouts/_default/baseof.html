@@ -3,17 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
-    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
+    {{ $description := .Description | default .Site.Params.description }}
+    <title>{{ .Title }}{{ if not .IsHome }} | {{ .Site.Title }}{{ end }}</title>
+    <meta name="description" content="{{ $description }}" />
+    <link rel="canonical" href="{{ .Permalink }}" />
+    {{ if .IsHome }}
+      {{ $profile := .Params.profile }}
+      {{ $portraitURL := $profile.portrait | absURL }}
+      <meta property="og:type" content="profile" />
+      <meta property="og:title" content="{{ .Title }}" />
+      <meta property="og:description" content="{{ $description }}" />
+      <meta property="og:url" content="{{ .Permalink }}" />
+      <meta property="og:image" content="{{ $portraitURL }}" />
+      <meta property="og:image:alt" content="{{ $profile.name }}" />
+      {{ $person := dict
+        "@type" "Person"
+        "name" $profile.name
+        "url" .Permalink
+        "image" $portraitURL
+        "description" $description
+        "sameAs" (slice $profile.scholar)
+      }}
+      {{ $page := dict "@context" "https://schema.org" "@type" "ProfilePage" "url" .Permalink "mainEntity" $person }}
+      <script type="application/ld+json">{{ $page | jsonify | safeJS }}</script>
+    {{ end }}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400;1,600&family=Noto+Serif+JP:wght@400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+JP:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="{{ "css/main.css" | relURL }}" />
   </head>
-  <body>
+  <body data-lang="ja">
     {{ block "main" . }}{{ end }}
+    <script src="{{ "js/main.js" | relURL }}" defer></script>
   </body>
 </html>

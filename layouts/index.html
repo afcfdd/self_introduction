@@ -1,94 +1,214 @@
 {{ define "main" }}
+  <input class="language-switch" id="language-switch" type="checkbox" aria-label="Switch to English" />
   <nav class="topbar">
-    <a class="brand" href="#top">{{ .Params.profile.name }}</a>
-    <div class="nav-links">
-      <a href="#profile">Profile</a>
-      <a href="#research">Research</a>
-      <a href="#contact">Contact</a>
+    <div class="topbar-inner">
+      <a class="brand" href="#top">
+        <span class="brand-mark">AF</span>
+        <span>{{ .Params.profile.name }}</span>
+      </a>
+      <div class="nav-links">
+        <a href="#profile"><span class="lang lang-ja">プロフィール</span><span class="lang lang-en">Profile</span></a>
+        <a href="#research"><span class="lang lang-ja">研究</span><span class="lang lang-en">Research</span></a>
+        <a href="#publications"><span class="lang lang-ja">論文</span><span class="lang lang-en">Publications</span></a>
+        <a href="#vision"><span class="lang lang-ja">Vision</span><span class="lang lang-en">Vision</span></a>
+        <a href="#contact"><span class="lang lang-ja">連絡先</span><span class="lang lang-en">Contact</span></a>
+        <label class="lang-toggle" for="language-switch" aria-label="Switch language">
+          <span class="lang lang-ja">EN</span><span class="lang lang-en">JP</span>
+        </label>
+      </div>
     </div>
   </nav>
 
-  <article class="page" id="top">
+  <main class="page" id="top">
     <header class="hero">
-      <p class="eyebrow">{{ .Params.profile.eyebrow }}</p>
-      <h1>{{ .Params.profile.name }}</h1>
-      <p class="lead">{{ .Params.profile.lead }}</p>
-      <p class="tag-row">
-        {{ range .Params.profile.tags }}<span>{{ . }}</span>{{ end }}
-      </p>
-      {{ with .Params.profile.portrait }}
-        <figure class="portrait">
-          <img src="{{ . | relURL }}" alt="{{ $.Params.profile.name }}" />
-        </figure>
-      {{ end }}
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <h1>{{ .Params.profile.name }}</h1>
+          <p class="lead">
+            <span class="lang lang-ja">{{ .Params.profile.lead }}</span>
+            <span class="lang lang-en">{{ .Params.profile.lead_en }}</span>
+          </p>
+          <div class="tag-row">
+            {{ range $index, $tag := .Params.profile.tags }}
+              <span class="tag-item">
+                <span class="lang lang-ja">{{ $tag }}</span>
+                <span class="lang lang-en">{{ index $.Params.profile.tags_en $index }}</span>
+              </span>
+            {{ end }}
+            {{ range .Params.research_methods }}
+              <span class="tag-item">{{ . }}</span>
+            {{ end }}
+          </div>
+        </div>
+
+        {{ with .Params.profile.portrait }}
+          <figure class="portrait">
+            <img src="{{ . | relURL }}" alt="{{ $.Params.profile.name }}" width="1000" height="1000" fetchpriority="high" />
+          </figure>
+        {{ end }}
+      </div>
     </header>
 
-    <section id="profile">
-      <h2>{{ .Params.headings.profile }}</h2>
-      {{ range .Params.education }}
-        <div class="entry">
-          <h3>{{ .title }}</h3>
-          <p>{{ .body | safeHTML }}</p>
-          {{ with .note }}
-            <p class="note">{{ . }}</p>
-          {{ end }}
+    <section id="profile" class="section-block">
+      <div class="section-header">
+        <div>
+          <span class="section-number">01</span>
+          <h2><span class="lang lang-ja">{{ .Params.headings.profile }}</span><span class="lang lang-en">{{ .Params.headings.profile_en }}</span></h2>
         </div>
+      </div>
+
+      <div class="profile-grid">
+        {{ range $index, $item := .Params.education }}
+          <article class="entry card" data-index="{{ printf "%02d" (add $index 1) }}">
+            <h3><span class="lang lang-ja">{{ $item.title }}</span><span class="lang lang-en">{{ $item.title_en }}</span></h3>
+            <p class="lang-block">
+              <span class="lang lang-ja">{{ $item.body_ja | safeHTML }}</span>
+              <span class="lang lang-en">{{ $item.body | safeHTML }}</span>
+            </p>
+            {{ with $item.note }}<p class="note lang-block"><span class="lang lang-ja">{{ . | safeHTML }}</span><span class="lang lang-en">{{ $item.note_en | safeHTML }}</span></p>{{ end }}
+          </article>
+        {{ end }}
+      </div>
+
+      {{ with .Params.research_base }}
+        <section class="research-base card">
+          <h3>{{ .title }}</h3>
+          <p class="note"><span class="lang lang-ja">{{ .role }}</span><span class="lang lang-en">{{ .role_en }}</span></p>
+          <ul class="affiliation-list">
+            {{ range .affiliations }}
+              <li>
+                <a href="{{ .url }}">{{ .name }}</a>
+                <span class="note affiliation-institution"><span class="lang lang-ja">{{ .institution }}</span><span class="lang lang-en">{{ .institution_en }}</span></span>
+              </li>
+            {{ end }}
+          </ul>
+        </section>
       {{ end }}
 
-      <div class="statement">
-        {{ range .Params.statement }}
-          <p>{{ .text }}</p>
+      {{ with .Params.statement }}
+        <div class="statement card">
+          <p>
+            <span class="lang lang-ja">{{ .text }}{{ $.Params.profile.lead }}</span>
+            <span class="lang lang-en">{{ .text_en }} {{ $.Params.profile.lead_en }}</span>
+          </p>
+        </div>
+      {{ end }}
+    </section>
+
+    <section id="research" class="section-block">
+      <div class="section-header">
+        <div>
+          <span class="section-number">02</span>
+          <h2><span class="lang lang-ja">{{ .Params.headings.research }}</span><span class="lang lang-en">{{ .Params.headings.research_en }}</span></h2>
+        </div>
+      </div>
+
+      <div class="research-grid">
+        {{ range $index, $item := .Params.research }}
+          <article class="entry card research-card" data-index="{{ printf "%02d" (add $index 1) }}">
+            <h3><span class="lang lang-ja">{{ $item.title }}</span><span class="lang lang-en">{{ $item.title_en }}</span></h3>
+            {{ with $item.items }}
+              <ul class="field-list">
+                {{ range $fieldIndex, $field := . }}
+                  <li><span class="lang lang-ja">{{ $field }}</span><span class="lang lang-en">{{ index $item.items_en $fieldIndex }}</span></li>
+                {{ end }}
+              </ul>
+              {{ with $.Params.research_methods }}
+                <h4 class="methods-heading"><span class="lang lang-ja">手法</span><span class="lang lang-en">Methods</span></h4>
+                <ul class="field-list">
+                  {{ range . }}<li>{{ . }}</li>{{ end }}
+                </ul>
+              {{ end }}
+            {{ end }}
+            {{ with $item.body }}<p><span class="lang lang-ja">{{ . }}</span><span class="lang lang-en">{{ $item.body_en }}</span></p>{{ end }}
+          </article>
         {{ end }}
       </div>
     </section>
 
-    <section id="research">
-      <h2>{{ .Params.headings.research }}</h2>
-      {{ range .Params.research }}
-        <div class="entry">
-          <h3>{{ .title }}</h3>
-          {{ with .items }}
-            <ul>
-              {{ range . }}
-                <li>{{ . }}</li>
-              {{ end }}
-            </ul>
-          {{ end }}
-          {{ with .body }}
-            <p>{{ . }}</p>
-          {{ end }}
+    <section id="publications" class="section-block publications-block">
+      <div class="section-header">
+        <div>
+          <span class="section-number">03</span>
+          <h2><span class="lang lang-ja">{{ .Params.headings.publications }}</span><span class="lang lang-en">{{ .Params.headings.publications_en }}</span></h2>
         </div>
+      </div>
+
+      <div class="publication-grid">
+        {{ range .Params.publications }}
+          <article class="card">
+            <p class="publication-citation">{{ .authors }}: <a href="{{ .url }}">{{ .title }}</a>, {{ .venue }}, {{ .year }}.</p>
+          </article>
+        {{ end }}
+      </div>
+      {{ with .Params.profile.scholar }}
+        <p class="publication-profile"><a href="{{ . }}">Google Scholar</a></p>
       {{ end }}
     </section>
 
-    <section id="vision">
-      <h2>{{ .Params.headings.vision }}</h2>
-      <p class="vision">{{ .Params.vision.quote }}</p>
+    <section id="vision" class="section-block vision-block">
+      <div class="section-header">
+        <div>
+          <span class="section-number">04</span>
+          <h2><span class="lang lang-ja">{{ .Params.headings.vision }}</span><span class="lang lang-en">{{ .Params.headings.vision_en }}</span></h2>
+        </div>
+      </div>
+      <p class="vision"><span class="lang lang-ja">{{ .Params.vision.quote }}</span><span class="lang lang-en">{{ .Params.vision.quote_en }}</span></p>
     </section>
 
-    <section id="contact">
-      <h2>{{ .Params.headings.contact }}</h2>
+    <section id="contact" class="section-block contact-block">
+      <div class="section-header">
+        <div>
+          <span class="section-number">05</span>
+          <h2><span class="lang lang-ja">{{ .Params.headings.contact }}</span><span class="lang lang-en">{{ .Params.headings.contact_en }}</span></h2>
+        </div>
+      </div>
+
       <div class="contact-list">
-        {{ range .Params.contacts }}
-          <div class="contact-row">
-            <span class="label">{{ .label }}</span>
+        {{ range $index, $item := .Params.contacts }}
+          <div class="contact-row card" data-index="{{ printf "%02d" (add $index 1) }}">
+            <span class="label"><span class="lang lang-ja">{{ $item.label }}</span><span class="lang lang-en">{{ $item.label_en }}</span></span>
             <div>
-              {{ if .href }}
-                <a href="{{ .href }}">{{ .value }}</a>
+              {{ if $item.href }}
+                <a href="{{ $item.href }}">{{ $item.value }}</a>
               {{ else }}
-                <span>{{ .value }}</span>
+                <span>{{ $item.value }}</span>
               {{ end }}
-              {{ with .note }}
-                <span class="note">{{ . }}</span>
-              {{ end }}
+              {{ with $item.note }}<span class="note">{{ . }}</span>{{ end }}
             </div>
           </div>
         {{ end }}
       </div>
     </section>
 
-    <footer class="footer">
-      <p>© {{ now.Year }} {{ .Site.Params.author }}</p>
-    </footer>
-  </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div class="site-footer-grid">
+        <div class="footer-column footer-identity">
+          <h2>{{ .Params.profile.name }}</h2>
+          <p><span class="lang lang-ja">筑波大学<br>情報メディア創成学類</span><span class="lang lang-en">University of Tsukuba<br>College of Media Arts, Science and Technology</span></p>
+          <a href="mailto:jjay.cfd@gmail.com">jjay.cfd@gmail.com</a>
+          <a href="https://x.com/afcfd_" target="_blank" rel="noreferrer">X: @afcfd_</a>
+        </div>
+
+        <div class="footer-column">
+          <h3><span class="lang lang-ja">研究</span><span class="lang lang-en">Research</span></h3>
+          <a href="#research"><span class="lang lang-ja">研究領域</span><span class="lang lang-en">Research areas</span></a>
+          <a href="#publications"><span class="lang lang-ja">論文</span><span class="lang lang-en">Publications</span></a>
+        </div>
+
+        <div class="footer-column footer-links">
+          <a href="#profile"><span class="lang lang-ja">プロフィール</span><span class="lang lang-en">Profile</span></a>
+          <a href="#vision">Vision</a>
+          <a href="#contact"><span class="lang lang-ja">連絡先</span><span class="lang lang-en">Contact</span></a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© {{ now.Year }} {{ .Site.Params.author }}</span>
+      </div>
+    </div>
+  </footer>
 {{ end }}
