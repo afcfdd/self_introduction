@@ -17,8 +17,6 @@ research = "Research"
 research_en = "Research"
 publications = "Publications"
 publications_en = "Publications"
-vision = "Vision"
-vision_en = "Vision"
 contact = "Contact"
 contact_en = "Contact"
 
@@ -107,10 +105,6 @@ bibtex = '''@inproceedings{fujiwara2024thermiapt,
   doi={10.1145/3681756.3697966},
   url={https://doi.org/10.1145/3681756.3697966}
 }'''
-
-[vision]
-quote = "人間の感覚入力から微分可能な内部表現を取り出し、機械へデプロイする。機械で最適化された表現を人間の知覚・行動と比較し、両者に共通する知能の構造を探りたい。"
-quote_en = "I extract differentiable internal representations from human sensory input and deploy them in machines. By comparing machine-optimized representations with human perception and action, I explore shared structures of intelligence."
 
 [[contacts]]
 label = "Email"

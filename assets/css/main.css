@@ -403,19 +403,6 @@ h3 {
   text-underline-offset: 0.2em;
 }
 
-.vision-block {
-  padding: 0;
-}
-
-.vision {
-  max-width: 54rem;
-  margin: 2rem 0 0;
-  font-size: clamp(1.25rem, 2.2vw, 1.9rem);
-  font-weight: 400;
-  line-height: 1.55;
-  letter-spacing: -0.025em;
-}
-
 .contact-list {
   grid-template-columns: repeat(3, 1fr);
 }
@@ -583,11 +570,6 @@ h3 {
 
   .entry {
     min-height: auto;
-  }
-
-  .vision {
-    margin-top: 2.5rem;
-    font-size: 1.45rem;
   }
 
   .site-footer-grid {
