@@ -185,13 +185,6 @@ h1 {
   line-height: 1.08;
 }
 
-.lead {
-  max-width: 30rem;
-  margin-bottom: 1.8rem;
-  font-size: clamp(1rem, 1.7vw, 1.25rem);
-  line-height: 1.55;
-}
-
 .tag-row {
   display: flex;
   flex-wrap: wrap;

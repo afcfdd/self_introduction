@@ -24,10 +24,6 @@
       <div class="hero-grid">
         <div class="hero-copy">
           <h1>{{ .Params.profile.name }}</h1>
-          <p class="lead">
-            <span class="lang lang-ja">{{ .Params.profile.lead }}</span>
-            <span class="lang lang-en">{{ .Params.profile.lead_en }}</span>
-          </p>
           <div class="tag-row">
             {{ range $index, $tag := .Params.profile.tags }}
               <span class="tag-item">
